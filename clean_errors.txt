@@ -1,0 +1,7 @@
+﻿ERROR|COMPILE_TIME_ERROR|ARGUMENT_TYPE_NOT_ASSIGNABLE|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\core\\theme\\app_theme.dart|76|20|229|The argument type 'CardTheme' can't be assigned to the parameter type 'CardThemeData?'. 
+ERROR|COMPILE_TIME_ERROR|UNDEFINED_IDENTIFIER|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\data\\datasources\\claude_ocr_datasource.dart|29|25|15|Undefined name 'anthropicDioRef'.
+ERROR|COMPILE_TIME_ERROR|UNDEFINED_GETTER|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\features\\export\\presentation\\providers\\export_provider.dart|136|44|5|The getter 'total' isn't defined for the type 'InvoiceItem'.
+ERROR|COMPILE_TIME_ERROR|RETURN_OF_INVALID_TYPE_FROM_CLOSURE|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\features\\export\\presentation\\providers\\export_provider.dart|207|53|8|The returned type 'List<int>' isn't returnable from a 'Future<Uint8List>' function, as required by the closure's context.
+ERROR|COMPILE_TIME_ERROR|UNDEFINED_GETTER|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\features\\export\\presentation\\screens\\export_screen.dart|96|41|13|The getter 'formattedDate' isn't defined for the type 'Invoice'.
+ERROR|COMPILE_TIME_ERROR|UNDEFINED_METHOD|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\lib\\features\\upload\\presentation\\screens\\upload_screen.dart|196|27|4|The method 'File' isn't defined for the type '_UploadCard'.
+ERROR|COMPILE_TIME_ERROR|CREATION_WITH_NON_TYPE|C:\\Users\\jamsh\\GoogleAntiGravity\\SNAP-BILL\\test\\widget_test.dart|16|35|5|The name 'MyApp' isn't a class.
