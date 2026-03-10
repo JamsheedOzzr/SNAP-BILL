@@ -46,54 +46,64 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
               onBack: () => context.pop(),
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 12),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: IntrinsicHeight(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 12),
 
-                    // ── Circular progress ────────────────
-                    _CircularProgressCard(
-                      progress: scanState.currentStep.progress,
-                    ).animate().fadeIn(duration: 350.ms),
+                            // ── Circular progress ────────────────
+                            _CircularProgressCard(
+                              progress: scanState.currentStep.progress,
+                            ).animate().fadeIn(duration: 350.ms),
 
-                    const SizedBox(height: 16),
+                            const SizedBox(height: 16),
 
-                    // ── Pipeline steps ───────────────────
-                    _PipelineCard(
-                      currentStep: scanState.currentStep,
-                    ).animate().fadeIn(delay: 100.ms),
+                            // ── Pipeline steps ───────────────────
+                            _PipelineCard(
+                              currentStep: scanState.currentStep,
+                            ).animate().fadeIn(delay: 100.ms),
 
-                    const SizedBox(height: 16),
+                            const SizedBox(height: 16),
 
-                    // ── File pill ────────────────────────
-                    _FilePill(
-                      fileName: uploadState.isDemo
-                          ? 'demo-receipt.jpg'
-                          : uploadState.selectedImage?.path
-                                  .split('/')
-                                  .last ??
-                              'receipt.jpg',
-                      thumbPath: uploadState.selectedImage?.path,
-                      isDemo: uploadState.isDemo,
-                    ).animate().fadeIn(delay: 200.ms),
+                            // ── File pill ────────────────────────
+                            _FilePill(
+                              fileName: uploadState.isDemo
+                                  ? 'demo-receipt.jpg'
+                                  : uploadState.selectedImage?.path
+                                          .split('/')
+                                          .last ??
+                                      'receipt.jpg',
+                              thumbPath: uploadState.selectedImage?.path,
+                              isDemo: uploadState.isDemo,
+                            ).animate().fadeIn(delay: 200.ms),
 
-                    if (scanState.currentStep == ScanStep.error) ...[
-                      const SizedBox(height: 16),
-                      _ErrorBanner(
-                          message: scanState.errorMessage,
-                          onRetry: _startScan),
-                    ],
+                            if (scanState.currentStep == ScanStep.error) ...[
+                              const SizedBox(height: 16),
+                              _ErrorBanner(
+                                  message: scanState.errorMessage,
+                                  onRetry: _startScan),
+                            ],
 
-                    const Spacer(),
-                    Text(
-                      'Processing takes less than 15 seconds.\nPlease don\'t close the app.',
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.bodySmall,
+                            const Spacer(),
+                            const SizedBox(height: 24),
+                            Text(
+                              'Processing takes less than 15 seconds.\nPlease don\'t close the app.',
+                              textAlign: TextAlign.center,
+                              style: AppTextStyles.bodySmall,
+                            ),
+                            const SizedBox(height: 16),
+                          ],
+                        ),
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],

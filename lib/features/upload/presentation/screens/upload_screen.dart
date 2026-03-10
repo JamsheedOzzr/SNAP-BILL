@@ -73,7 +73,7 @@ class UploadScreen extends ConsumerWidget {
 
                 // ── Upload card ───────────────────────────
                 Expanded(
-                  child: Padding(
+                  child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
@@ -110,6 +110,7 @@ class UploadScreen extends ConsumerWidget {
 
                         // ── Info pill ────────────────────
                         _GlassPill().animate().fadeIn(delay: 350.ms),
+                        const SizedBox(height: 24),
                       ],
                     ),
                   ),
