@@ -93,7 +93,7 @@ class ScanNotifier extends _$ScanNotifier {
     _setStep(ScanStep.runningOcr);
 
     try {
-      final invoice = uploadState.isDemo
+      final invoice = uploadState.isDemo || uploadState.selectedImage == null
           ? repo.createDemoInvoice()
           : await repo.createInvoiceFromImage(uploadState.selectedImage!);
 

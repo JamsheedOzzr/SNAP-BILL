@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
+import 'package:snap_bill/core/constants/app_constants.dart';
 import 'package:snap_bill/data/datasources/claude_ocr_datasource.dart';
 import 'package:snap_bill/data/models/invoice.dart';
 import 'package:snap_bill/data/models/invoice_item.dart';
@@ -24,6 +25,22 @@ class InvoiceRepository {
 
   /// Calls OCR on [imageFile] and returns a fully-formed [Invoice].
   Future<Invoice> createInvoiceFromImage(File imageFile) async {
+    if (AppConstants.claudeApiKey.isEmpty) {
+      // Simulate API delay for a mock response when key is missing
+      await Future.delayed(const Duration(seconds: 2));
+      return _buildInvoice(
+        OcrResult(
+          businessName: 'Mock Business (No API Key)',
+          address: '123 Test St, Fallback City',
+          date: DateTime.now().toIso8601String().substring(0, 10),
+          items: const [
+            OcrLineItem(desc: 'Mock Item 1', qty: 1, price: 100),
+            OcrLineItem(desc: 'Mock Item 2', qty: 2, price: 50),
+          ],
+        ),
+        originalPath: imageFile.path,
+      );
+    }
     final ocrResult = await _ocrDatasource.extractFromImage(imageFile);
     return _buildInvoice(ocrResult, originalPath: imageFile.path);
   }
