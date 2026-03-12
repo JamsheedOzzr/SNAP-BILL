@@ -39,7 +39,11 @@ class SnapBillBottomNav extends StatelessWidget {
               icon: Icons.receipt_long_outlined,
               label: 'History',
               isActive: activeIndex == 1,
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('History coming soon!')),
+                );
+              },
             ),
             // ── Raised camera CTA ────────────────────────
             GestureDetector(
@@ -81,13 +85,21 @@ class SnapBillBottomNav extends StatelessWidget {
               icon: Icons.analytics_outlined,
               label: 'Stats',
               isActive: activeIndex == 3,
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Stats coming soon!')),
+                );
+              },
             ),
             _NavItem(
               icon: Icons.person_outline,
               label: 'Profile',
               isActive: activeIndex == 4,
-              onTap: () {},
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Profile coming soon!')),
+                );
+              },
             ),
           ],
         ),

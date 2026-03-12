@@ -127,7 +127,7 @@ class ScanNotifier extends _$ScanNotifier {
 // ── Shared current invoice (cross-feature) ─────────────────────
 // Kept here to avoid circular imports; screens read from this.
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CurrentInvoice extends _$CurrentInvoice {
   @override
   Invoice? build() => null;

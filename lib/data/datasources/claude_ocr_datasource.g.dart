@@ -23,7 +23,7 @@ final anthropicDioProvider = AutoDisposeProvider<Dio>.internal(
 
 typedef AnthropicDioRef = AutoDisposeProviderRef<Dio>;
 String _$claudeOcrDatasourceHash() =>
-    r'a1cff9207a7dd6cb7d3836535f7537164a12c851';
+    r'4ff5925850f6ffb94759f325e93c81619622c8ef';
 
 /// Datasource responsible for calling Claude Vision API with a receipt image
 ///

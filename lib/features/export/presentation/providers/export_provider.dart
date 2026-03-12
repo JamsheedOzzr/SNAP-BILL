@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/services.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:snap_bill/core/constants/app_constants.dart';
+
 import 'package:snap_bill/data/models/invoice.dart';
 import 'package:snap_bill/data/models/invoice_item.dart';
 import 'package:snap_bill/features/invoice/presentation/providers/invoice_provider.dart';
@@ -16,7 +16,7 @@ import 'package:snap_bill/features/invoice/presentation/providers/invoice_provid
 part 'export_provider.g.dart';
 
 // ── Export format enum ────────────────────────────────────────
-enum ExportFormat { pdf, json, print }
+enum ExportFormat { pdf, print }
 
 // ── Export status ─────────────────────────────────────────────
 sealed class ExportStatus {
@@ -54,8 +54,6 @@ class ExportNotifier extends _$ExportNotifier {
       switch (format) {
         case ExportFormat.pdf:
           await _exportPdf(invoice);
-        case ExportFormat.json:
-          await _copyJson(invoice);
         case ExportFormat.print:
           await _print(invoice);
       }
@@ -66,7 +64,7 @@ class ExportNotifier extends _$ExportNotifier {
 
   Future<void> _exportPdf(Invoice invoice) async {
     final pdf = pw.Document();
-    final currency = AppConstants.defaultCurrency;
+    final currency = 'Rs. ';
 
     pdf.addPage(
       pw.Page(
@@ -174,7 +172,7 @@ class ExportNotifier extends _$ExportNotifier {
       subject: invoice.invoiceNumber,
     );
 
-    state = ExportSuccess('PDF saved & shared');
+    state = ExportSuccess('Shared via WhatsApp');
   }
 
   pw.Widget _headerCell(String text, {int flex = 1}) {
@@ -198,11 +196,7 @@ class ExportNotifier extends _$ExportNotifier {
     );
   }
 
-  Future<void> _copyJson(Invoice invoice) async {
-    final json = invoice.toJson();
-    await Clipboard.setData(ClipboardData(text: json.toString()));
-    state = const ExportSuccess('JSON copied to clipboard');
-  }
+
 
   Future<void> _print(Invoice invoice) async {
     final pdfBytes = await _buildPdfBytes(invoice);

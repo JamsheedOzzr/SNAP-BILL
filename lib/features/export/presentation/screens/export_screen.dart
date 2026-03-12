@@ -103,8 +103,6 @@ class ExportScreen extends ConsumerWidget {
                           isLoading: isLoading,
                           onPdf: () =>
                               exporter.export(ExportFormat.pdf),
-                          onJson: () =>
-                              exporter.export(ExportFormat.json),
                           onPrint: () =>
                               exporter.export(ExportFormat.print),
                           onNewScan: () {
@@ -314,14 +312,12 @@ class _ActionButtons extends StatelessWidget {
   const _ActionButtons({
     required this.isLoading,
     required this.onPdf,
-    required this.onJson,
     required this.onPrint,
     required this.onNewScan,
   });
 
   final bool isLoading;
   final VoidCallback onPdf;
-  final VoidCallback onJson;
   final VoidCallback onPrint;
   final VoidCallback onNewScan;
 
@@ -329,7 +325,7 @@ class _ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Primary: Download PDF
+        // Primary: Share to WhatsApp
         ElevatedButton.icon(
           onPressed: isLoading ? null : onPdf,
           icon: isLoading
@@ -338,22 +334,14 @@ class _ActionButtons extends StatelessWidget {
                   height: 18,
                   child: CircularProgressIndicator(
                       strokeWidth: 2, color: Colors.white))
-              : const Icon(Icons.download_rounded, size: 18),
-          label: Text(isLoading ? 'Exporting…' : 'Download PDF'),
+              : const Icon(Icons.share_rounded, size: 18),
+          label: Text(isLoading ? 'Processing…' : 'Share to WhatsApp'),
         ),
         const SizedBox(height: 12),
 
         // Secondary row
         Row(
           children: [
-            Expanded(
-              child: _SecondaryBtn(
-                icon: Icons.data_object_rounded,
-                label: 'Copy JSON',
-                onTap: onJson,
-              ),
-            ),
-            const SizedBox(width: 12),
             Expanded(
               child: _SecondaryBtn(
                 icon: Icons.print_outlined,

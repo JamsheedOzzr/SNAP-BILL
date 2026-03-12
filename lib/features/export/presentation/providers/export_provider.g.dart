@@ -6,7 +6,7 @@ part of 'export_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$exportNotifierHash() => r'fbb00c35c3e2b823fa421d5776daac3c4b2649a8';
+String _$exportNotifierHash() => r'36febd63fc1e30d0c8ecc1b5e0927141df25c62b';
 
 /// See also [ExportNotifier].
 @ProviderFor(ExportNotifier)
